@@ -1,5 +1,5 @@
 {
-  "name": "@alife/fetch",
+  "name": "@ali/fetch",
   "version": "0.9.6",
   "description": "simple http client",
   "scripts": {
