@@ -1,29 +1,28 @@
-import { SimpleHTTPClent } from '..';
-import { JQueryBackend } from '../backend/jQueryBackend';
+import { IHTTPRequest } from '../interface';
 
 declare global {
   // tslint:disable-next-line:interface-name
   interface Window {
-    __CSRF_TOKEN__: string;
-    __IS_USER_RESP__: any;
+    __FETCH_CSRF_TOKEN_RESP__: {
+      __CSRF_TOKEN__: string;
+      __CSRF_TOKEN_RESP__: any;
+    }
   }
 }
 
-class CsrfTokenService {
-  http = new SimpleHTTPClent(new JQueryBackend());
-  isUserResp: any;
-  constructor() {
+export class CSRFTokenService {
+  constructor(public backend: IHTTPRequest, public url: string, public dataKeyName = 'data', public csrfTokenKeyName = 'csrfToken') {
     //
   }
   init() {
-    return this.http.get('/api/dp/isUser').then(resp => {
-      window.__CSRF_TOKEN__ = resp.data.csrfToken;
-      window.__IS_USER_RESP__ = resp; // 这个接口一调,csrf token就更新了，确保全局只调一次
+    return this.backend.request(this.url, { method: 'GET' }).then(resp => {
+      window.__FETCH_CSRF_TOKEN_RESP__ = {
+        __CSRF_TOKEN__: resp[this.dataKeyName][this.csrfTokenKeyName],
+        __CSRF_TOKEN_RESP__: resp // 这个接口一调,csrf token就更新了，确保全局只调一次
+      }
     });
   }
   getCsrfToken() {
-    return window.__CSRF_TOKEN__;
+    return window.__FETCH_CSRF_TOKEN_RESP__ && window.__FETCH_CSRF_TOKEN_RESP__.__CSRF_TOKEN__ || '';
   }
 }
-
-export const csrfTokenService = new CsrfTokenService();

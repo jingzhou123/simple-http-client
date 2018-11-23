@@ -1,6 +1,6 @@
 {
   "name": "@alife/fetch",
-  "version": "0.9.3",
+  "version": "0.9.6",
   "description": "simple http client",
   "scripts": {
     "test": "npm run test",
