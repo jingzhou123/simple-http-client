@@ -1,0 +1,6 @@
+{
+  "name": "@alife/fetch",
+  "scripts": {
+    "prepublish": "tsc --build tsconfig.json"
+  }
+}

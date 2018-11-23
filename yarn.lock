@@ -9,6 +9,11 @@
   dependencies:
     es6-promise "*"
 
+"@types/jquery@^2.0.0":
+  version "2.0.51"
+  resolved "http://registry.npm.alibaba-inc.com/@types/jquery/download/@types/jquery-2.0.51.tgz#d0c728663de8905457a26c8891ac08ad2b3539c9"
+  integrity sha1-0McoZj3okFRXomyIkawIrSs1Ock=
+
 es6-promise@*:
   version "4.2.5"
   resolved "http://registry.npm.alibaba-inc.com/es6-promise/download/es6-promise-4.2.5.tgz#da6d0d5692efb461e082c14817fe2427d8f5d054"

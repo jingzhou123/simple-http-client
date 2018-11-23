@@ -1,29 +1,32 @@
 {
-  "name": "simple-http-client",
-  "version": "0.9.0",
+  "name": "@alife/fetch",
+  "version": "0.9.3",
   "description": "simple http client",
-  "main": "index.js",
   "scripts": {
     "test": "npm run test",
-    "build": "rm -rf dist && tsc --build tsconfig.json"
+    "build": "rm -rf dist && tsc --build tsconfig.json",
+    "prepublish": "npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jingzhou123/simple-http-client.git"
+  "publishConfig": {
+    "registry": "http://registry.npm.alibaba-inc.com"
+  },
+  "directories": {
+    "lib": "dist/**/*"
   },
   "keywords": [
-    "simple",
-    "http",
-    "client"
+    "fetch"
   ],
-  "author": "jz",
+  "files": [
+    "dist/**/*"
+  ],
+  "main": "dist/index.js",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jingzhou123/simple-http-client/issues"
-  },
-  "homepage": "https://github.com/jingzhou123/simple-http-client#readme",
+  "types": "dist/index.d.ts",
   "devDependencies": {
     "@types/es6-promise": "^3.3.0",
     "typescript": "^3.1.6"
+  },
+  "dependencies": {
+    "@types/jquery": "^2.0.0"
   }
 }
