@@ -3,6 +3,9 @@ import { HTTPResponse, IHTTPResponseInterceptor, HTTPRequest, IHTTPRequestInterc
 function isPromise(promise: any) {
   return promise && typeof promise.then === 'function';
 }
+function chainPromise(initialValue: any, promiseList: Promise<any>[]) {
+  return promiseList.reduce(() => {}, isPromise(initialValue) ? initialValue)
+}
 export function interceptResponse(response: HTTPResponse, interceptors: IHTTPResponseInterceptor[] = []):
   Promise<HTTPResponse> {
 
